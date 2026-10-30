@@ -17,8 +17,9 @@ buildscript {
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.launchers_plugin.renderer.dsl")
 }
+
+apply(plugin = "com.launchers_plugin.renderer.dsl")
 
 android {
     namespace = "dev.myrenderer.plugin"
