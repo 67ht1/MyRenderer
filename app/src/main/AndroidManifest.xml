@@ -14,6 +14,16 @@
             </intent-filter>
         </activity>
 
+        <!-- Zalith Launcher 1 / legacy plugin metadata -->
+        <meta-data android:name="fclPlugin" android:value="true" />
+        <meta-data android:name="des" android:value="${des}" />
+        <meta-data android:name="renderer" android:value="${renderer}" />
+        <meta-data android:name="boatEnv" android:value="${boatEnv}" />
+        <meta-data android:name="pojavEnv" android:value="${pojavEnv}" />
+        <meta-data android:name="minMCVer" android:value="${minMCVer}" />
+        <meta-data android:name="maxMCVer" android:value="${maxMCVer}" />
+
+        <!-- Keep V2 support for newer launchers -->
         <meta-data
             android:name="fclPlugin_V2"
             android:resource="@string/config" />
