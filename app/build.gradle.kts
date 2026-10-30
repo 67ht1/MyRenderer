@@ -73,7 +73,7 @@ android {
                 renderer(
                     displayName = "MyRenderer",
                     rendererId = "opengles3",
-                    rendererGLPath = "libmobileglues.so",
+                    rendererGLPath = nativePath("libmobileglues.so"),
                     rendererEGLPath = nativePath("libmobileglues.so"),
                     dlopenLibPaths = emptyList(),
                     env = buildEnvs {
