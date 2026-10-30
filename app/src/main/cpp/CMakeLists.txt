@@ -11,6 +11,11 @@ endif()
 
 add_subdirectory("${MOBILEGLUES_DIR}" "${CMAKE_BINARY_DIR}/mobileglues")
 
+# Publish the upstream renderer as the library name declared in the V2 plugin config.
+if(TARGET MyRendererAndroid)
+    set_target_properties(MyRendererAndroid PROPERTIES OUTPUT_NAME mobileglues)
+endif()
+
 # MobileGlues upstream uses CMAKE_SOURCE_DIR for public headers. When embedded
 # with add_subdirectory(), that resolves to the Android app, not MobileGlues.
 # Add the actual MobileGlues public and internal include directories explicitly.
