@@ -11,7 +11,17 @@ endif()
 
 add_subdirectory("${MOBILEGLUES_DIR}" "${CMAKE_BINARY_DIR}/mobileglues")
 
-if(TARGET mobileglues AND ANDROID)
-    # Android 15+ 16 KB page-size compatibility for the native renderer.
-    target_link_options(mobileglues PRIVATE "-Wl,-z,max-page-size=16384")
+# MobileGlues upstream uses CMAKE_SOURCE_DIR for public headers. When embedded
+# with add_subdirectory(), that resolves to the Android app, not MobileGlues.
+# Add the actual MobileGlues public and internal include directories explicitly.
+if(TARGET MyRendererAndroid)
+    target_include_directories(MyRendererAndroid PRIVATE
+        "${MOBILEGLUES_DIR}/include"
+        "${MOBILEGLUES_DIR}/includes"
+    )
+
+    if(ANDROID)
+        # Android 15+ 16 KB page-size compatibility.
+        target_link_options(MyRendererAndroid PRIVATE "-Wl,-z,max-page-size=16384")
+    endif()
 endif()
