@@ -1,6 +1,7 @@
 import com.launchers_plugin.renderer.buildscript.buildEnvs
 import com.launchers_plugin.renderer.buildscript.buildJsonValue
 import com.launchers_plugin.renderer.buildscript.nativePath
+import com.launchers_plugin.renderer.buildscript.legacyManifest
 import com.launchers_plugin.renderer.buildscript.renderer
 
 buildscript {
@@ -27,6 +28,24 @@ android {
     ndkVersion = "27.2.12479018"
 
     defaultConfig {
+        manifestPlaceholders.putAll(legacyManifest {
+            displayName = "MyRenderer"
+            rendererName = "opengles3"
+            rendererLib = "libmobileglues.so"
+            eglLib = "/libmobileglues.so"
+            minMCVer = ""
+            maxMCVer = ""
+            boatEnv {
+                put("LIBGL_ES", "3")
+                put("POJAV_RENDERER", "opengles3")
+                put("MOBILEGL_BACKEND_TYPE", "DirectGLES")
+            }
+            pojavEnv {
+                put("LIBGL_ES", "3")
+                put("POJAV_RENDERER", "opengles3")
+                put("MOBILEGL_BACKEND_TYPE", "DirectGLES")
+            }
+        })
         applicationId = "dev.myrenderer.plugin"
         minSdk = 26
         targetSdk = 35
